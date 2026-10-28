@@ -1,0 +1,68 @@
+# =========================================================================
+# Unified Monorepo .gitignore (.NET 10 Web API & Angular 22)
+# Organization: example.com | Project: interview-question-002
+# =========================================================================
+
+# -------------------------------------------------------------------------
+# Node & Angular
+# -------------------------------------------------------------------------
+**/node_modules/
+**/dist/
+**/tmp/
+**/out-tsc/
+**/.angular/cache/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# -------------------------------------------------------------------------
+# .NET & Visual Studio / C#
+# -------------------------------------------------------------------------
+**/[Bb]in/
+**/[Oo]bj/
+**/.vs/
+**/*.user
+**/*.userosscache
+**/*.suo
+**/*.userprefs
+**/*.pidb
+**/*.svclog
+**/*.DotSettings.user
+**/Generated\ Files/
+**/BenchmarkDotNet.Artifacts/
+**/*.rsuser
+
+# SQLite databases & temp WAL logs
+*.db
+*.db-shm
+*.db-wal
+
+# -------------------------------------------------------------------------
+# Local SSL Certificates (mkcert)
+# -------------------------------------------------------------------------
+frontend/ssl/*.pem
+frontend/ssl/*.key
+!frontend/ssl/.gitkeep
+
+# -------------------------------------------------------------------------
+# Editors & IDEs
+# -------------------------------------------------------------------------
+.idea/
+*.sln.iml
+.history/
+*.code-workspace
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+
+# -------------------------------------------------------------------------
+# Operating System Files
+# -------------------------------------------------------------------------
+.DS_Store
+Thumbs.db
+ehthumbs.db
+[Dd]esktop.ini
+$RECYCLE.BIN/

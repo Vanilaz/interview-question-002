@@ -1,0 +1,95 @@
+<div class="flex min-h-screen items-center justify-center p-4 sm:p-6">
+  <!-- Window Container with exact wireframe aspect & border -->
+  <div class="w-full max-w-2xl bg-white border-2 border-black shadow-lg">
+    <!-- Header banner IT 02-1 -->
+    <app-form-header title="IT 02-1"></app-form-header>
+
+    <div class="p-8 sm:p-14">
+      <!-- Success / Error Notifications -->
+      @if (successMessage(); as msg) {
+        <div class="mb-6 rounded border border-emerald-400 bg-emerald-50 p-3 text-sm text-emerald-800 text-center" role="alert">
+          {{ msg }}
+        </div>
+      }
+
+      @if (errorMessage(); as err) {
+        <div class="mb-6 rounded border border-red-300 bg-red-50 p-3 text-sm text-red-700 text-center" role="alert">
+          {{ err }}
+        </div>
+      }
+
+      <form [formGroup]="form" (ngSubmit)="onSubmit()" class="space-y-6 max-w-md mx-auto" novalidate>
+        <!-- User Field -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-6">
+          <label for="user" class="text-base font-normal text-black sm:w-28 sm:text-right">
+            User
+          </label>
+          <div class="flex-1">
+            <input
+              id="user"
+              formControlName="username"
+              type="text"
+              autocomplete="username"
+              class="w-full h-11 px-3 border border-black focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-base transition duration-150"
+              [class.border-red-500]="f.username.invalid && (f.username.dirty || f.username.touched)"
+            />
+            @if (f.username.invalid && (f.username.dirty || f.username.touched)) {
+              @if (f.username.errors?.['required']) {
+                <p class="mt-1 text-xs text-red-600">กรุณากรอก User</p>
+              } @else if (f.username.errors?.['minlength']) {
+                <p class="mt-1 text-xs text-red-600">User ต้องมีความยาวอย่างน้อย 3 ตัวอักษร</p>
+              }
+            }
+          </div>
+        </div>
+
+        <!-- Password Field (Masked with *) -->
+        <div class="flex flex-col sm:flex-row sm:items-center sm:justify-end gap-3 sm:gap-6">
+          <label for="password" class="text-base font-normal text-black sm:w-28 sm:text-right">
+            Password
+          </label>
+          <div class="flex-1">
+            <input
+              id="password"
+              formControlName="password"
+              type="password"
+              autocomplete="current-password"
+              class="w-full h-11 px-3 border border-black focus:outline-none focus:ring-2 focus:ring-emerald-600 focus:border-transparent text-base transition duration-150"
+              [class.border-red-500]="f.password.invalid && (f.password.dirty || f.password.touched)"
+            />
+            @if (f.password.invalid && (f.password.dirty || f.password.touched)) {
+              @if (f.password.errors?.['required']) {
+                <p class="mt-1 text-xs text-red-600">กรุณากรอก Password</p>
+              } @else if (f.password.errors?.['minlength']) {
+                <p class="mt-1 text-xs text-red-600">Password ต้องมีความยาวอย่างน้อย 6 ตัวอักษร</p>
+              }
+            }
+          </div>
+        </div>
+
+        <!-- Buttons & Links matching wireframe -->
+        <div class="pt-4 flex flex-col items-center space-y-4">
+          <button
+            type="submit"
+            [disabled]="form.invalid || isSubmitting()"
+            class="px-8 py-2.5 bg-[#f0f4f8] hover:bg-[#e2e8f0] active:bg-[#cbd5e1] text-black border border-slate-700 rounded-md shadow-sm font-normal text-base cursor-pointer disabled:opacity-50 disabled:cursor-not-allowed transition duration-150"
+          >
+            @if (isSubmitting()) {
+              <span>กำลังตรวจสอบ...</span>
+            } @else {
+              <span>ลงชื่อเข้าใช้งาน</span>
+            }
+          </button>
+
+          <!-- Link to Form IT 02-2 (Registration) -->
+          <a
+            routerLink="/register"
+            class="text-[#0066cc] hover:text-blue-800 underline text-base font-normal cursor-pointer transition duration-150"
+          >
+            สมัครสมาชิก
+          </a>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>

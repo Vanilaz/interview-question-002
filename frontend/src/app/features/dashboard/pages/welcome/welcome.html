@@ -1,0 +1,25 @@
+<div class="flex min-h-screen items-center justify-center p-4 sm:p-6">
+  <!-- Window Container with exact wireframe aspect & border -->
+  <div class="w-full max-w-2xl bg-white border-2 border-black shadow-lg">
+    <!-- Header banner IT 02-3 -->
+    <app-form-header title="IT 02-3"></app-form-header>
+
+    <div class="p-8 sm:p-20 text-center flex flex-col items-center justify-center min-h-[360px]">
+      @if (tokenValidation.isLoading()) {
+        <div class="flex flex-col items-center space-y-3">
+          <div class="w-8 h-8 border-4 border-emerald-600 border-t-transparent rounded-full animate-spin"></div>
+          <p class="text-sm text-gray-600">กำลังตรวจสอบสิทธิ์...</p>
+        </div>
+      } @else if (tokenValidation.error(); as err) {
+        <div class="rounded border border-red-300 bg-red-50 p-4 text-sm text-red-700 max-w-md" role="alert">
+          {{ err.message || 'การตรวจสอบสิทธิ์ล้มเหลว' }}
+        </div>
+      } @else if (tokenValidation.hasValue()) {
+        <!-- Main Wireframe Content: Welcome User : xxx -->
+        <h2 class="text-2xl sm:text-3xl font-normal text-black tracking-wide my-auto">
+          Welcome User : {{ tokenValidation.value().username }}
+        </h2>
+      }
+    </div>
+  </div>
+</div>
